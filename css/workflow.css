@@ -1,0 +1,308 @@
+.ep {
+    position: absolute;
+    bottom: 43%;
+    right: 4px;
+    width: 10px;
+    height: 10px;
+    background-color: orange;
+    cursor: pointer;
+    box-shadow: 0 0 2px black;
+    -webkit-transition: -webkit-box-shadow 0.25s ease-in;
+    -moz-transition: -moz-box-shadow 0.25s ease-in;
+    transition: box-shadow 0.25s ease-in;
+}
+.item {
+    position: absolute;
+    left: -100px;
+    top:-100px;
+    width: 90%;
+    cursor: pointer;
+    font-size: 11px;
+    z-index: 1;
+    -webkit-transition: background-color 0.25s ease-in;
+    -moz-transition: background-color 0.25s ease-in;
+    transition: background-color 0.25s ease-in;
+}
+.aLabel {
+    padding: 0!important;
+}
+#Content-Left{
+    height:450px;
+    width: 150px;
+    float:left;
+    overflow: hidden;
+}
+#Content-Left div {
+    cursor: move;
+    overflow: hidden;
+    margin: 15px auto;
+    margin-bottom: 5px;
+}
+#Content-Left>p {
+    margin-bottom: 0;
+    text-align: center;
+}
+#Content-Left div p{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin: 10px auto;
+}
+.startDom {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%!important;
+    background-color: #35cc17;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#Content-Left .task {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    color: #fff;
+    background-color: #09627e;
+    border-radius: 5px!important;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#Content-Left .line {
+    width: 50px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: initial;
+    margin-right: 20px;
+}
+.end {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%!important;
+    background-color: #f54336;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.joinNode,.branchNode,.parallelNode {
+    width: 45px;
+    height:38px;
+    text-align: center;
+}
+.joinNode {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.branchNode {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parallelNode {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#Content-Main-box {
+    position: relative;
+    height:300px;
+    overflow: hidden;
+    width:calc( 100% - 150px );
+    float:left;
+}
+#Content-Main{
+    position: relative;
+    height:450px;
+    overflow: hidden;
+    width:calc( 100% - 150px );
+    float:left;
+    background: url("/img/fang15.png") repeat;
+}
+#Content-Main div p{
+    height: 100%;
+    vertical-align: middle;
+    margin: 10px auto;
+}
+#Content-Main .task {
+    width: 90px;
+    min-height: 54px;
+    text-align: center;
+    overflow: hidden;
+    color: #fff;
+}
+#Content-Main .taskPendingAudit {
+    background-color: #09627e;
+    border-radius: 5px!important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.taskPass {
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#Content-Main .startDom {
+    width: 54px;
+    height: 54px;
+    padding: 10px;
+    padding-top: 7px;
+    padding-left: 7px;
+    color: #fff;
+}
+#Content-Main .LabelDom {
+    width: auto;
+    text-align: center;
+    font-size: 13px;
+}
+#Content-Main .end {
+    width: 54px;
+    height: 54px;
+    padding: 10px;
+    padding-top: 7px;
+    padding-left: 7px;
+    color: #fff;
+}
+#Content-Main .task span {
+    display: block;
+    margin: 5px;
+    padding: 5px 10px;
+}
+#Content-Main .joinNode,#Content-Main .branchNode,#Content-Main .parallelNode {
+    width: 64px;
+    height: 54px;
+    background-color: transparent;
+}
+ul {
+    list-style: none;
+}
+.aLabel {
+    color: #232323;
+    padding: 2px;
+    cursor: pointer;
+    opacity: 0.8;
+    transform: translate(-50% , -100%)!important;
+}
+/*模态层样式*/
+.nav-stacked {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+.nav.nav-pills.nav-stacked>li {
+    text-align: left;
+}
+.nav.nav-pills.nav-stacked>li>a>i {
+    margin-right: 5px;
+}
+.nav.nav-pills.nav-stacked>li>a>span {
+    float: right;
+    margin-top: 2.25px;
+}
+
+/*重写label样式*/
+.jsplumb-overlay {
+    background: #fff;
+    cursor: pointer;
+    width: 0;
+    text-indent: -1000000px;
+}
+.jsplumb-connector {
+    cursor: pointer;
+}
+.basic {
+    font-size: 0;
+}
+/*自定义表格checkbox*/
+.customTable thead tr {
+    background-color: #eee;
+}
+.customTable th {
+    text-align: center;
+}
+.customTable tr input[type="checkbox"] {
+    margin: 4px auto;
+    display: block;
+}
+#formFieldTable table {
+    border-left: 0;
+}
+#formFieldTable tbody {
+    display:block;
+    max-height:250px;
+    overflow-y:auto;
+    overflow-x: hidden;
+}
+#formFieldTable thead,#formFieldTable tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+#formFieldTable tr td,#formFieldTable tr th{
+    width: 89px;
+    word-wrap: break-word;
+}
+#formFieldTable tbody tr td {
+    border-bottom: 0;
+    border-left: 0;
+    vertical-align: middle;
+}
+#formFieldTable thead tr th {
+    border-bottom: 1px;
+}
+/*选择人员数*/
+.selected-parent-block {
+    border: 1px solid #e5e5e5;
+    width: 100%;
+    float:left;
+    cursor: text;
+    padding: 3px;
+}
+.selected-parent-block .selected-block {
+    border: 1px solid #e5e5e5;
+    float: left;
+    padding: 1px 10px;
+    margin: 3px 2px;
+    line-height: 22px;
+    vertical-align: middle;
+    border-radius: 5px !important;
+    position: relative;
+}
+
+.selected-button {
+    cursor: pointer;
+    background-color: rgba(244, 246, 250, 1) !important;
+}
+
+.selected-block .select2-selection_choice_remove {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+.selected-parent-block .selected-block-placeholder {
+    height: 26px;
+    line-height: 26px;
+    padding-left: 8px;
+}
+
+.selected-parent-block .selected-block-placeholder span{
+    color: #999999;
+    font-size: 13px;
+}
+.modal-body #scheduleDepartmentAndUserTree .jstree-icon.jstree-themeicon {
+    background-size: contain !important;
+    width: 24px;
+    height: 24px;
+}
+.modal-body #scheduleDepartmentAndUserTree .jstree-icon.jstree-checkbox {
+    position: relative;
+}
+.hideStyle {
+    visibility: hidden;
+}
+.modal .modal-lg #basicSet .jstree{
+    position: relative;
+    padding-left: 15px;
+}
+.modal .modal-lg #basicSet .jstree-default .jstree-checkbox {
+    margin-left: 0;
+}

@@ -1,0 +1,150 @@
+<div class="container" ng-controller="DemoController">
+	<div class="row">
+		<div class="col-md-12" style="text-align:right;margin:10px 0;">
+			<button type="button" class="btn btn-info" ng-click="submitWorkflow()">提交</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="list-content" id="Content-Box">
+			    <div class="row">
+			        <div class="col-md-12">
+			            <div class="form-horizontal">
+			                <div id="Content-Left">
+			                    <div class="startDom basic" id="START">开始节点</div>
+			                    <p>开始节点</p>
+			                    <div class="task basic" id="TASK">任务节点</div>
+			                    <p>任务节点</p>
+			                    <div class="end basic" id="END">结束节点</div>
+			                    <p>结束节点</p>
+			                </div>
+			                <!-- 绘图开始 -->
+			                <div id="Content-Main">
+			                    <div id="{{label.defineId}}"
+			                         back-id="{{label.defineId}}"
+			                         ng-repeat="label in labelList"
+			                         repeat-finish
+			                         class='item LabelDom'
+			                         category="label">
+			                        <span  ng-bind="label.name"></span>
+			                    </div>
+			                    <div id="{{start.defineId}}"
+			                         back-id="{{start.defineId}}"
+			                         ng-repeat="start in startList"
+			                         repeat-finish
+			                         class='item startDom itemMenu' category="start">
+			                        <div class='ep'></div>
+			                        <p ng-bind="start.name ='开始'"></p>
+			                    </div>
+			                    <div id="{{task.defineId}}"
+			                         back-id="{{task.defineId}}"
+			                         ng-repeat="task in taskList"
+			                         repeat-finish
+			                         class='item task itemMenu'
+			                         ng-class="{taskPendingAudit:task.auditStatus != 'pass',taskPass:task.auditStatus == 'pass'}"
+			                         category="task">
+			                        <div class='ep'></div>
+			                        <span ng-if="task.name && task.name.length > 5" ng-bind="task.name"></span>
+			                        <span ng-if="task.name && task.name.length <= 5" ng-bind="task.name" style="margin-top: 12px"></span>
+			                        <p ng-if="!task.name" style="margin-top: 15px">任务</p>
+			                    </div>
+			                    <div id="{{end.defineId}}"
+			                         back-id="{{end.defineId}}"
+			                         ng-repeat="end in endList"
+			                         repeat-finish
+			                         class='item end itemMenu' category="end">
+			                        <div class='ep'></div>
+			                        <p ng-bind="end.name = '结束'"></p>
+			                    </div>
+			                    <div id="{{joinNode.defineId}}"
+			                         back-id="{{joinNode.defineId}}"
+			                         ng-repeat="joinNode in joinNodeList"
+			                         repeat-finish
+			                         class='item joinNode itemMenu'
+			                         category="joinNode"
+			                         ng-init="joinNode.name = '汇合'">
+			                        <div class='ep'></div>
+			                    </div>
+			                    <div id="{{branchNode.defineId}}"
+			                         back-id="{{branchNode.defineId}}"
+			                         ng-repeat="branchNode in branchNodeList"
+			                         repeat-finish
+			                         class='item branchNode itemMenu'
+			                         category="branchNode"
+			                         ng-init="branchNode.name = '分支'">
+			                        <div class='ep'></div>
+			                    </div>
+			                    <div id="{{parallelNode.defineId}}"
+			                         back-id="{{parallelNode.defineId}}"
+			                         ng-repeat="parallelNode in parallelNodeList"
+			                         repeat-finish
+			                         class='item parallelNode itemMenu'
+			                         category="parallelNode"
+			                         ng-init="parallelNode.name = '并行'">
+			                        <div class='ep'></div>
+			                    </div>
+			                </div>
+			                <div class="Clear"></div>
+			                <!-- 绘图结束 -->
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+<script type="text/ng-template" id="confirm.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="btn_cancel()"><span
+                aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">提示</h3>
+    </div>
+    <div class="modal-body">
+        <h4 ng-bind="confirmContent" style="text-align: center;font-size: 14px"></h4>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="btn_ok()" aria-hidden="true">
+            <span>确定 </span>
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="btn_cancel()" aria-hidden="true">
+            <span>取消 </span>
+        </button>
+    </div>
+</script>
+
+<!--编辑节点模态层开始-->
+<script type="text/ng-template" id="edit.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="btn_cancel()"><span
+                aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" ng-bind="title"></h3>
+    </div>
+    <div class="modal-body form-horizontal modal-content-middle modal-schedule-content">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="form-group">
+                        <label class="control-label col-md-4"><span
+                                class="text-danger">*</span>节点名称：</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" ng-model="model.name" maxlength="10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="btn_ok()" aria-hidden="true">
+            <span>确定</span>
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="btn_cancel()"
+                aria-hidden="true">
+            <span>取消</span>
+        </button>
+    </div>
+</script>
+<!--编辑节点模态层结束-->
