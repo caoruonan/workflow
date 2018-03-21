@@ -12,41 +12,21 @@ var server = http.createServer(function (request, response) {
     var ext = path.extname(realPath);
     ext = ext ? ext.slice(1) : 'unknown';
     fs.exists(realPath, function (exists) {
-        if (!exists) {
-            fs.readFile(path.join(__dirname, 'data/' + realPath + '.json'), {encoding: 'utf-8'}, function (err, bytesRead) {
-                if (!err) {
-                    var data = JSON.parse(bytesRead);
-                    response.writeHead(200, {
-                        'Content-Type': 'application/json'
-                    });
-                    response.write(JSON.stringify(data));
-                    response.end();
-                } else {
-                    response.writeHead(404, {
-                        'Content-Type': 'text/plain'
-                    });
-                    response.write(err.toString());
-                    response.end();
-                }
-
-            });
-        } else {
-            fs.readFile(realPath, "binary", function (err, file) {
-                if (err) {
-                    response.writeHead(500, {
-                        'Content-Type': 'text/plain'
-                    });
-                    response.end(err);
-                } else {
-                    var contentType = mine[ext] || "text/plain";
-                    response.writeHead(200, {
-                        'Content-Type': contentType
-                    });
-                    response.write(file, "binary");
-                    response.end();
-                }
-            });
-        }
+        fs.readFile(realPath, "binary", function (err, file) {
+            if (err) {
+                response.writeHead(500, {
+                    'Content-Type': 'text/plain'
+                });
+                response.end(err);
+            } else {
+                var contentType = mine[ext] || "text/plain";
+                response.writeHead(200, {
+                    'Content-Type': contentType
+                });
+                response.write(file, "binary");
+                response.end();
+            }
+        });
     });
 });
 server.listen(PORT);
