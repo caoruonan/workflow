@@ -15,12 +15,6 @@ myUIRoute.config(['$stateProvider','$urlRouterProvider',function($stateProvider,
 
 myUIRoute.controller('DemoController', ['$scope', '$uibModal',function($scope, $uibModal){
             $scope.model = {};//存储数据
-             //初始化数据
-            $scope.taskSummaryList = [];
-            $scope.routerList = [];
-            $scope.jsPlumbInit();
-            $scope._initConnection();
-            $scope._configContextMenu();
             //判断遍历存储函数
             $scope.cyclicStorage = function () {
                 $scope.startList = [];
@@ -601,6 +595,13 @@ myUIRoute.controller('DemoController', ['$scope', '$uibModal',function($scope, $
                         alert("请定义流程！");
                     }
             };
+
+             //初始化数据
+            $scope.taskSummaryList = [];
+            $scope.routerList = [];
+            $scope.jsPlumbInit();
+            $scope._initConnection();
+            $scope._configContextMenu();
 
 }]).directive('repeatFinish', function ($timeout) {
     return {
